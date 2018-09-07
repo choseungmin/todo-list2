@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './PageTemplate';
-import className from 'classnames';
+import styles from './PageTemplate.scss';
+import classNames from 'classnames/bind';
 
-const cx = className.bind(styles);
+const cx = classNames.bind(styles);
 
 const PageTemplate = ({ children }) => {
     return (
         <div className={ cx('page-template') }>
-            <h1>일정 관리</h1>
+            <h1>Todo List</h1>
             <div className={ cx('content') }>
                 { children }
             </div>
