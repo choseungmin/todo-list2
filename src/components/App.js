@@ -27,21 +27,48 @@ class App extends Component {
 
     handleInsert = () => {
         const { todos, input } = this.state;
-        const newTodo = {}
 
-    }
+        const newTodo = {
+            text: input,
+            done: false,
+            id: this.getId()
+        };
 
+        this.setState({
+            todo: [...todos, newTodo],
+            input: ''
+        });
+
+    };
+
+    handleToggle = (id) => {
+        const { todos } = this.state;
+        const index = todos.findIndex(todo => todo.id === id);
+
+        const toggled = {
+            ...todos[index],
+            done: !todos[index].done
+        };
+
+        this.setState({
+            todos: [
+                ...todos.slice(0, index),
+                toggled,
+                ...todos.slice(index+1, todos.length)
+            ]
+        })
+    };
 
 
     render() {
 
-        const { input, todos } = this.props;
-        const { handleChange} = this;
+        const { input, todos } = this.state;
+        const { handleChange, handleToggle } = this;
 
         return (
             <PageTemplate>
-                <TodoInput onChange={ handleChange } value={ input }/>
-                <TodoList todos={ todos }/>
+                <TodoInput onChange={ handleChange } onInsert={ this.handleInsert } value={ input }/>
+                <TodoList todos={ todos } onToggle={ handleToggle } />
             </PageTemplate>
         );
     }

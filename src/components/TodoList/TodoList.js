@@ -5,11 +5,15 @@ class TodoList extends Component {
 
     render() {
 
-        const { todos } = this.props;
-        console.log(todos)
+        const { todos, onToggle } = this.props;
         const todoList = todos.map(
             (todo) => (
-                <TodoItem id={todo.id} done={todo.done}>{todo.text}</TodoItem>
+                <TodoItem
+                    key={todo.id}
+                    done={todo.done}
+                    onToggle={() => onToggle(todo.id)}>
+                    {todo.text}
+                </TodoItem>
             )
         );
 
