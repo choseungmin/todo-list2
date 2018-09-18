@@ -27,7 +27,7 @@ const initialState = List([
 
 // 4. 리듀서 정의하기
 export default handleActions({
-    [INSERT]: (state, action) => {
+    [INSERT]: (state, action) => { 
         /* payload 안에 있는 id, text, done의 래퍼런스를 만들어 줍니다.
            래퍼런스를 만들지 않고, 바로 push(Map(action.payload))를 해도 되지만,
            나중에 이 코드를 보았을 대,
